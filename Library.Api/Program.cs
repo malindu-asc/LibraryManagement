@@ -1,4 +1,5 @@
 using Library.Api.Application.Services;
+using Library.Api.Endpoints;
 using Library.Api.Infrastructure.Data;
 using Library.Api.Infrastructure.Repositories;
 using Library.Api.Middleware;
@@ -40,6 +41,8 @@ app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Library Management API v1");
 });
+
+app.MapBookEndpoints();
 
 app.Run();
 
