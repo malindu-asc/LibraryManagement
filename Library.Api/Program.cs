@@ -1,4 +1,7 @@
+using Library.Api.Application.Services;
+using Library.Api.Endpoints;
 using Library.Api.Infrastructure.Data;
+using Library.Api.Infrastructure.Repositories;
 using Library.Api.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -19,6 +22,9 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<LibraryDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -35,6 +41,8 @@ app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Library Management API v1");
 });
+
+app.MapBookEndpoints();
 
 app.Run();
 
