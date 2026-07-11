@@ -1,4 +1,6 @@
+using Library.Api.Application.Services;
 using Library.Api.Infrastructure.Data;
+using Library.Api.Infrastructure.Repositories;
 using Library.Api.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -18,6 +20,9 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddDbContext<LibraryDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 
