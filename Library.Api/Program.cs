@@ -12,6 +12,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<LibraryDbContext>();
     await context.Database.MigrateAsync();
+    await DataSeeder.SeedAsync(context);
 }
 
 app.Run();
