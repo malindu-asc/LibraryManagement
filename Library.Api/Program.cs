@@ -48,6 +48,7 @@ app.UseSwaggerUI(options =>
 
 app.MapBookEndpoints();
 app.MapMemberEndpoints();
+app.MapBorrowingEndpoints();
 
 app.Run();
 
