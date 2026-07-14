@@ -1,3 +1,4 @@
+using FluentValidation;
 using Library.Api.Application.Services;
 using Library.Api.Endpoints;
 using Library.Api.Infrastructure.Data;
@@ -22,6 +23,9 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<LibraryDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+//scope lifetime for services and repositories
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IMemberRepository, MemberRepository>();

@@ -11,6 +11,7 @@ public class LibraryDbContext : DbContext
     public DbSet<Member> Members => Set<Member>();
     public DbSet<Borrowing> Borrowings => Set<Borrowing>();
 
+//fluent api
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Book>(b =>

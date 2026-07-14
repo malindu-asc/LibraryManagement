@@ -63,7 +63,7 @@ The API listens on `http://localhost:5120` by default. Swagger UI is available a
 ## Seed Data
 
 `Infrastructure/Data/DataSeeder.cs` seeds sample data the first time the app runs against an empty database:
-- 5 books (including titles with only 1 available copy, to exercise availability rules)
+- 5 books, including one (*Refactoring*) seeded with only 1 total copy that's immediately borrowed, leaving it with 0 available copies to exercise availability rules
 - 3 members (two of which start with active borrowings)
 - 2 borrowings, so `GET /api/borrowings` and `GET /api/members/{id}/borrowings` return data immediately
 
